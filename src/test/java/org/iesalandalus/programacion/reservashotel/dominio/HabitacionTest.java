@@ -1,14 +1,14 @@
 package org.iesalandalus.programacion.reservashotel.dominio;
 
 import org.junit.jupiter.api.Test;
-
+import org.iesalandalus.programacion.reservashotel.dominio.TipoHabitacion;
 import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class HabitacionTest {
-/*
+
     private static final String CADENA_NO_ESPERADA = "La cadena devuelta no es la esperada.";
     private static final String PLANTA_NO_ESPERADA = "El número de planta devuelta no es la misma que la pasada al constructor.";
     private static final String PUERTA_NO_ESPERADA = "El número de puerta devuelta no es la misma que la pasada al constructor.";
@@ -194,6 +194,4 @@ public class HabitacionTest {
 
         assertEquals(String.format("identificador=%s (%d-%d), precio habitación=%s, tipo habitación=%s", habitacion.getIdentificador(), habitacion.getPlanta(), habitacion.getPuerta(), habitacion.getPrecio(), habitacion.getTipoHabitacion()), habitacion.toString(), CADENA_NO_ESPERADA);
     }
-
- */
 }
