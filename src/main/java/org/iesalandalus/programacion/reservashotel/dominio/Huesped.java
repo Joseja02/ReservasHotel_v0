@@ -13,10 +13,10 @@ public class Huesped {
     private String correo;
     private String dni;
     private LocalDate fechaNacimiento;
-    private String ER_TELEFONO;
-    private String ER_CORREO;
-    private String ER_DNI;
-    public String FORMATO_FECHA;
+    private static final String ER_TELEFONO = "^\\d{9}$";
+    private static final String ER_CORREO = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,3}$";
+    private static final String ER_DNI = "^(\\d{8})([A-Za-z])$";
+    public static final String FORMATO_FECHA = "dd/MM/yyyy";
 
     private String formateaNombre(String nombre) {
 
@@ -39,22 +39,17 @@ public class Huesped {
         boolean letraValida = false;
         String letras = "TRWAGMYFPDXBNJZSQVHLCKE";
 
-        String patron = "^(\\d{8})([A-Za-z])$";
-        Pattern pattern = Pattern.compile(patron);
+        Pattern pattern = Pattern.compile(ER_DNI);
         Matcher matcher = pattern.matcher(dni);
 
         if (matcher.matches()) {
             String numeroDNI = matcher.group(1);
             String letraDNI = matcher.group(2);
+            int numero = Integer.parseInt(numeroDNI);
+            int indice = numero % 23;
+            char letraCalculada = letras.charAt(indice);
+            letraValida = letraCalculada == letraDNI.charAt(0);
 
-                try {
-                    int numero = Integer.parseInt(numeroDNI);
-                    int indice = numero % 23;
-                    char letraCalculada = letras.charAt(indice);
-                    letraValida = letraCalculada == letraDNI.charAt(0);
-                } catch (IllegalArgumentException e) {
-                    System.out.println("Error: El DNI tiene un formato incorrecto");
-                }
         } else {
             throw new IllegalArgumentException("ERROR: El dni del huésped no tiene un formato válido.");
         }
@@ -67,7 +62,7 @@ public class Huesped {
         if (nombre == null) {
             throw new NullPointerException("ERROR: El nombre de un huésped no puede ser nulo.");
         }
-        if (nombre.trim().isEmpty()){
+        if (nombre.isBlank()){
             throw new IllegalArgumentException("ERROR: El nombre de un huésped no puede estar vacío.");
         }
             this.nombre = formateaNombre(nombre);
@@ -76,11 +71,10 @@ public class Huesped {
         return telefono;
     }
     public void setTelefono(String telefono) {
-        String validacion = "^\\d{9}$";
         if (telefono == null) {
             throw new NullPointerException("ERROR: El teléfono de un huésped no puede ser nulo.");
         }
-        if (telefono.matches(validacion)) {
+        if (telefono.matches(ER_TELEFONO)) {
             this.telefono = telefono;
         } else {
             throw new IllegalArgumentException("ERROR: El teléfono del huésped no tiene un formato válido.");
@@ -90,11 +84,10 @@ public class Huesped {
         return correo;
     }
     public void setCorreo(String correo) {
-        String validacion = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,3}$";
         if (correo == null) {
             throw new NullPointerException("ERROR: El correo de un huésped no puede ser nulo.");
         }
-        if (correo.matches(validacion)) {
+        if (correo.matches(ER_CORREO)) {
             this.correo = correo;
         } else {
             throw new IllegalArgumentException("ERROR: El correo del huésped no tiene un formato válido.");
@@ -170,6 +163,6 @@ public class Huesped {
                 ", DNI=" + dni +
                 ", correo=" + correo +
                 ", teléfono=" + telefono +
-                ", fecha nacimiento=" + fechaNacimiento.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                ", fecha nacimiento=" + fechaNacimiento.format(DateTimeFormatter.ofPattern(FORMATO_FECHA));
     }
 }
