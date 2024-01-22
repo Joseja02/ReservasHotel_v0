@@ -17,10 +17,9 @@ public class Huespedes {
         if (capacidad <= 0){
             throw new IllegalArgumentException("ERROR: La capacidad debe ser mayor que cero.");
         }
-
         this.capacidad = capacidad;
         huespedes = new Huesped[this.capacidad];
-        tamano = 0;
+        tamano = getTamano();
     }
 
     public Huesped[] get() {
@@ -41,7 +40,11 @@ public class Huespedes {
     }
 
     public int getTamano() {
-        return tamano;
+        int counter = 0;
+        for (int i = 0; i < huespedes.length; i++)
+            if (huespedes[i] != null)
+                counter ++;
+        return counter;
     }
 
     public void insertar (Huesped huesped) throws OperationNotSupportedException {
@@ -50,7 +53,7 @@ public class Huespedes {
             throw new NullPointerException("ERROR: No se puede insertar un huésped nulo.");
         }
 
-        tamano = huespedes.length;
+        tamano = getTamano();
 
         for (int i = 0; i < tamano; i++){
             if (huesped.equals(huespedes[i])){
@@ -58,19 +61,17 @@ public class Huespedes {
             }
         }
 
-        if(capacidadSuperada(tamano)){
+        if(capacidadSuperada(tamano+1)){
             throw new OperationNotSupportedException("ERROR: No se aceptan más huéspedes.");
         }
 
         Huesped [] nuevoArray = new Huesped[tamano + 1];
 
-        for (int i = 0; i < tamano; i++) {
-            nuevoArray[i] = huespedes[i];
-        }
+        if (tamano >= 0) System.arraycopy(huespedes, 0, nuevoArray, 0, tamano);
         nuevoArray[nuevoArray.length - 1] = huesped;
 
         huespedes = nuevoArray;
-        tamano = huespedes.length;
+        tamano = getTamano();
     }
     private int buscarIndice (Huesped huesped){
 
@@ -99,7 +100,7 @@ public class Huespedes {
             return null;
         }
 
-        return huespedes[indice];
+        return new Huesped(huespedes[indice]);
     }
 
     public void borrar (Huesped huesped) throws OperationNotSupportedException {
@@ -110,7 +111,7 @@ public class Huespedes {
 
         int indice = buscarIndice(huesped);
         if (indice < 0){
-            throw new NullPointerException("ERROR: No existe ningún huésped como el indicado.");
+            throw new OperationNotSupportedException("ERROR: No existe ningún huésped como el indicado.");
         }
 
         desplazarUnaPosicionHaciaLaIzquierda(indice);
@@ -122,5 +123,6 @@ public class Huespedes {
             System.arraycopy(huespedes, indice + 1, nuevoArray, indice, huespedes.length - indice - 1);
         }
         huespedes = nuevoArray;
+        tamano = getTamano();
     }
 }
