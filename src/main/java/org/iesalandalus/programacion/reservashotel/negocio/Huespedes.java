@@ -123,6 +123,4 @@ public class Huespedes {
         }
         huespedes = nuevoArray;
     }
-
-// if (huespedes.length - 1 != indice)
 }
