@@ -1,6 +1,8 @@
 package org.iesalandalus.programacion.reservashotel.negocio;
 
 
+import org.iesalandalus.programacion.reservashotel.MainApp;
+import org.iesalandalus.programacion.reservashotel.dominio.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class ReservasTest {
-/*
+
     private static Huesped huesped1;
     private static Huesped huesped2;
     private static Huesped huesped3;
@@ -542,6 +544,4 @@ public class ReservasTest {
             fail(EXCEPCION_NO_PROCEDE);
         }
     }
-
- */
 }
