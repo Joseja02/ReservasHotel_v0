@@ -4,6 +4,11 @@ import org.iesalandalus.programacion.reservashotel.dominio.*;
 import org.iesalandalus.programacion.utilidades.Entrada;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+
+import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
+import static org.iesalandalus.programacion.reservashotel.dominio.Reserva.FORMATO_FECHA_RESERVA;
 
 public final class Consola {
     public Consola() {
@@ -46,8 +51,8 @@ public final class Consola {
         telefono = Entrada.cadena();
         System.out.print("Introduzca email del Huesped: ");
         correo = Entrada.cadena();
-        System.out.print("Introduzca fecha de nacimiento del Huesped: ");
-        fechaNacimiento = LocalDate.parse(Entrada.cadena());
+        System.out.print("Introduzca fecha de nacimiento del Huesped (Formato fecha: " + FORMATO_FECHA_RESERVA + ")");
+        fechaNacimiento = LocalDate.parse(Entrada.cadena(), DateTimeFormatter.ofPattern(FORMATO_FECHA_RESERVA));
 
         huesped = new Huesped(nombre, dni, correo, telefono, fechaNacimiento);
         return huesped;
@@ -67,7 +72,7 @@ public final class Consola {
     public static LocalDate leerFecha(String mensaje) {
         try {
             System.out.print(mensaje);
-            return LocalDate.parse(Entrada.cadena());
+            return LocalDate.parse(Entrada.cadena(),DateTimeFormatter.ofPattern(FORMATO_FECHA_RESERVA));
         } catch (Exception e) {
             System.out.println("El formato de fecha introducido no es válido.");
             return leerFecha(mensaje);
@@ -88,7 +93,7 @@ public final class Consola {
         System.out.print("Introduzca precio de habitación: ");
         precio = Double.parseDouble(Entrada.cadena());
         System.out.print("Introduzca tipo de habitación: ");
-        tipoHabitacion = TipoHabitacion.values()[Entrada.entero()];
+        tipoHabitacion = leerTipoHabitacion();
 
         habitacion = new Habitacion(planta, puerta, precio, tipoHabitacion);
         return habitacion;
@@ -110,7 +115,7 @@ public final class Consola {
 
     public static TipoHabitacion leerTipoHabitacion(){
         for (TipoHabitacion opcion : TipoHabitacion.values()) {
-            System.out.println(opcion.toString());
+            System.out.println(opcion.ordinal() + "  -  " + opcion.toString());
         }
         System.out.print("Escoja tipo de habitación: ");
         return TipoHabitacion.values()[Entrada.entero()];
@@ -118,7 +123,7 @@ public final class Consola {
 
     public static Regimen leerRegimen(){
         for (Regimen opcion : Regimen.values()) {
-            System.out.println(opcion.toString());
+            System.out.println(opcion.ordinal() + "  -  " + opcion.toString());
         }
         System.out.print("Escoja tipo de régimen: ");
         return Regimen.values()[Entrada.entero()];
@@ -133,10 +138,10 @@ public final class Consola {
         LocalDate fechaFinReserva;
         int numeroPersonas;
 
-        System.out.print("Introduzca la fecha inicio de reserva: ");
-        fechaInicioReserva = LocalDate.parse(Entrada.cadena());
-        System.out.print("Introduzca la fecha fin de reserva: ");
-        fechaFinReserva = LocalDate.parse(Entrada.cadena());
+        System.out.print("Introduzca la fecha inicio de reserva("+FORMATO_FECHA_RESERVA+"): ");
+        fechaInicioReserva = LocalDate.parse(Entrada.cadena(), DateTimeFormatter.ofPattern(FORMATO_FECHA_RESERVA));
+        System.out.print("Introduzca la fecha fin de reserva("+FORMATO_FECHA_RESERVA+"): ");
+        fechaFinReserva = LocalDate.parse(Entrada.cadena(), DateTimeFormatter.ofPattern(FORMATO_FECHA_RESERVA));
         System.out.print("Introduzca número de personas: ");
         numeroPersonas = Entrada.entero();
 
