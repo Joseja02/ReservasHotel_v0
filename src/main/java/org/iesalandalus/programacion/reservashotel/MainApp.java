@@ -38,7 +38,7 @@ public class MainApp {
 
     private static void ejecutarOpcion(Opcion opcion) {
         switch (opcion) {
-            case SALIR -> System.out.print("Hasta luego!!!!");
+            case SALIR -> System.out.print("asta luego! - Tarea Online 4 | Jose Javier Sierra Berd鷑");
             case INSERTAR_HUESPED -> insertarHuesped();
             case BUSCAR_HUESPED -> buscarHuesped();
             case BORRAR_HUESPED -> borrarHuesped();
@@ -100,7 +100,7 @@ public class MainApp {
     private static void mostrarHuespedes() {
         try {
             if (huespedes.getTamano() > 0) {
-                System.out.println("Estos son Huespedes existentes: ");
+                System.out.println("Estos son los Huespedes existentes: ");
                 System.out.println(" ");
                 for (int i = 0; i < huespedes.getTamano(); i++) {
                     System.out.println(huespedes.get()[i].toString());
@@ -337,20 +337,11 @@ public class MainApp {
                 numElementos = getNumElementosNoNulos(reservasFuturas);
 
                 if (numElementos == 0) {
-                    //Si la primera de las habitaciones encontradas del tipo solicitado no tiene reservas en el futuro,
-                    // quiere decir que est谩 disponible.
                     habitacionDisponible = new Habitacion(habitacionesTipoSolicitado[i]);
                     tipoHabitacionEncontrada = true;
                 } else {
 
-                    //Ordenamos de mayor a menor las reservas futuras encontradas por fecha de fin de la reserva.
-                    // Si la fecha de inicio de la reserva es posterior a la mayor de las fechas de fin de las reservas
-                    // (la reserva de la posici贸n 0), quiere decir que la habitaci贸n est谩 disponible en las fechas indicadas.
-
                     Arrays.sort(reservasFuturas, 0, numElementos, Comparator.comparing(Reserva::getFechaFinReserva).reversed());
-
-                    /*System.out.println("\n\nMostramos las reservas ordenadas por fecha de inicio de menor a mayor (numelementos="+numElementos+")");
-                    mostrar(reservasFuturas);*/
 
                     if (fechaInicioReserva.isAfter(reservasFuturas[0].getFechaFinReserva())) {
                         habitacionDisponible = new Habitacion(habitacionesTipoSolicitado[i]);
@@ -358,14 +349,8 @@ public class MainApp {
                     }
 
                     if (!tipoHabitacionEncontrada) {
-                        //Ordenamos de menor a mayor las reservas futuras encontradas por fecha de inicio de la reserva.
-                        // Si la fecha de fin de la reserva es anterior a la menor de las fechas de inicio de las reservas
-                        // (la reserva de la posici贸n 0), quiere decir que la habitaci贸n est谩 disponible en las fechas indicadas.
 
                         Arrays.sort(reservasFuturas, 0, numElementos, Comparator.comparing(Reserva::getFechaInicioReserva));
-
-                        /*System.out.println("\n\nMostramos las reservas ordenadas por fecha de inicio de menor a mayor (numelementos="+numElementos+")");
-                        mostrar(reservasFuturas);*/
 
                         if (fechaFinReserva.isBefore(reservasFuturas[0].getFechaInicioReserva())) {
                             habitacionDisponible = new Habitacion(habitacionesTipoSolicitado[i]);
@@ -373,7 +358,6 @@ public class MainApp {
                         }
                     }
 
-                    //Recorremos el array de reservas futuras para ver si las fechas solicitadas est谩n alg煤n hueco existente entre las fechas reservadas
                     if (!tipoHabitacionEncontrada) {
                         for (int j = 1; j < reservasFuturas.length && !tipoHabitacionEncontrada; j++) {
                             if (reservasFuturas[j] != null && reservasFuturas[j - 1] != null) {
