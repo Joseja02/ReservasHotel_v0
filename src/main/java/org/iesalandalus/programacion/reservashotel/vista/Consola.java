@@ -4,10 +4,12 @@ import org.iesalandalus.programacion.reservashotel.dominio.*;
 import org.iesalandalus.programacion.utilidades.Entrada;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
 import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
+import static org.iesalandalus.programacion.reservashotel.dominio.Reserva.FORMATO_FECHA_HORA_RESERVA;
 import static org.iesalandalus.programacion.reservashotel.dominio.Reserva.FORMATO_FECHA_RESERVA;
 
 public final class Consola {
@@ -152,4 +154,20 @@ public final class Consola {
         reserva = new Reserva(huesped, habitacion, regimen, fechaInicioReserva, fechaFinReserva, numeroPersonas);
         return reserva;
     }
+
+    public static LocalDateTime leerFechaHora(String mensaje) {
+        boolean comprobacionFechaErronea;
+        do {
+            try {
+                comprobacionFechaErronea = false;
+                System.out.print(mensaje);
+                return LocalDateTime.parse(Entrada.cadena(), DateTimeFormatter.ofPattern(FORMATO_FECHA_RESERVA));
+            } catch (Exception e) {
+                System.out.println("El formato de fecha introducido no es válido.");
+                comprobacionFechaErronea = true;
+            }
+        } while (comprobacionFechaErronea == true);
+        return leerFechaHora(mensaje);
+    }
+
 }
