@@ -1,13 +1,14 @@
 package org.iesalandalus.programacion.reservashotel.dominio;
 
+import org.iesalandalus.programacion.reservashotel.modelo.dominio.Regimen;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RegimenTest {
 
-    private static final String NOMBRE_NO_VALIDO = "El nombre del tipo de régimen no es válido.";
-    private static final String INCREMENTO_PRECIO_NO_VALIDO = "El incremento de precio establecido para el régimen no es el correcto.";
+    private static final String NOMBRE_NO_VALIDO = "El nombre del tipo de rï¿½gimen no es vï¿½lido.";
+    private static final String INCREMENTO_PRECIO_NO_VALIDO = "El incremento de precio establecido para el rï¿½gimen no es el correcto.";
 
 
     @Test

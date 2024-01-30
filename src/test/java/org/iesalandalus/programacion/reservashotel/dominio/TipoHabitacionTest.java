@@ -1,13 +1,14 @@
 package org.iesalandalus.programacion.reservashotel.dominio;
 
+import org.iesalandalus.programacion.reservashotel.modelo.dominio.TipoHabitacion;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TipoHabitacionTest {
 
-    private static final String NOMBRE_NO_VALIDO = "El nombre del tipo de habitación no es válido.";
-    private static final String NUMERO_MAXIMO_PERSONAS_NO_VALIDO = "El número máximo de personas para el tipo de habitación no es el correcto.";
+    private static final String NOMBRE_NO_VALIDO = "El nombre del tipo de habitaciï¿½n no es vï¿½lido.";
+    private static final String NUMERO_MAXIMO_PERSONAS_NO_VALIDO = "El nï¿½mero mï¿½ximo de personas para el tipo de habitaciï¿½n no es el correcto.";
 
 
     @Test

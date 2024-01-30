@@ -1,16 +1,14 @@
 package org.iesalandalus.programacion.reservashotel.vista;
 
-import org.iesalandalus.programacion.reservashotel.dominio.*;
+import org.iesalandalus.programacion.reservashotel.modelo.dominio.*;
+import org.iesalandalus.programacion.reservashotel.modelo.negocio.*;
 import org.iesalandalus.programacion.utilidades.Entrada;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 
-import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
-import static org.iesalandalus.programacion.reservashotel.dominio.Reserva.FORMATO_FECHA_HORA_RESERVA;
-import static org.iesalandalus.programacion.reservashotel.dominio.Reserva.FORMATO_FECHA_RESERVA;
+import static org.iesalandalus.programacion.reservashotel.modelo.dominio.Reserva.FORMATO_FECHA_RESERVA;
 
 public final class Consola {
     public Consola() {

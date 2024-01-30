@@ -1,13 +1,13 @@
 package org.iesalandalus.programacion.reservashotel;
 
 
-import org.iesalandalus.programacion.reservashotel.dominio.Habitacion;
-import org.iesalandalus.programacion.reservashotel.dominio.Huesped;
-import org.iesalandalus.programacion.reservashotel.dominio.Reserva;
-import org.iesalandalus.programacion.reservashotel.dominio.TipoHabitacion;
-import org.iesalandalus.programacion.reservashotel.negocio.Habitaciones;
-import org.iesalandalus.programacion.reservashotel.negocio.Huespedes;
-import org.iesalandalus.programacion.reservashotel.negocio.Reservas;
+import org.iesalandalus.programacion.reservashotel.modelo.dominio.Habitacion;
+import org.iesalandalus.programacion.reservashotel.modelo.dominio.Huesped;
+import org.iesalandalus.programacion.reservashotel.modelo.dominio.Reserva;
+import org.iesalandalus.programacion.reservashotel.modelo.dominio.TipoHabitacion;
+import org.iesalandalus.programacion.reservashotel.modelo.negocio.Habitaciones;
+import org.iesalandalus.programacion.reservashotel.modelo.negocio.Huespedes;
+import org.iesalandalus.programacion.reservashotel.modelo.negocio.Reservas;
 import org.iesalandalus.programacion.reservashotel.vista.Consola;
 import org.iesalandalus.programacion.reservashotel.vista.Opcion;
 import org.iesalandalus.programacion.utilidades.Entrada;
@@ -17,7 +17,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Comparator;
 
-import static org.iesalandalus.programacion.reservashotel.dominio.Reserva.FORMATO_FECHA_RESERVA;
+import static org.iesalandalus.programacion.reservashotel.modelo.dominio.Reserva.FORMATO_FECHA_RESERVA;
 
 public class MainApp {
     public static int CAPACIDAD = 4;
@@ -38,7 +38,7 @@ public class MainApp {
 
     private static void ejecutarOpcion(Opcion opcion) {
         switch (opcion) {
-            case SALIR -> System.out.print("¡Hasta luego! - Tarea Online 4 | Jose Javier Sierra Berdún");
+            case SALIR -> System.out.print("ï¿½Hasta luego! - Tarea Online 4 | Jose Javier Sierra Berdï¿½n");
             case INSERTAR_HUESPED -> insertarHuesped();
             case BUSCAR_HUESPED -> buscarHuesped();
             case BORRAR_HUESPED -> borrarHuesped();
@@ -56,7 +56,7 @@ public class MainApp {
                 LocalDate fechaFinReserva = Consola.leerFecha("Introduzca fecha inicio reserva (" + FORMATO_FECHA_RESERVA + "):");
                 consultarDisponibilidad(tipoHabitacion, fechaInicioReserva, fechaFinReserva);
             }
-            default -> System.out.print("Opción no válida: " + opcion);
+            default -> System.out.print("Opciï¿½n no vï¿½lida: " + opcion);
         }
     }
 
@@ -108,7 +108,7 @@ public class MainApp {
                 }
 
             } else {
-                System.out.println("No existen huéspedes ");
+                System.out.println("No existen huï¿½spedes ");
             }
         } catch (Exception e) {
             System.out.print("ERROR: " + e.getMessage());
@@ -134,7 +134,7 @@ public class MainApp {
             if (habitacion != null) {
                 System.out.println(habitacion.toString());
             } else {
-                System.out.print("La Habitación no existe");
+                System.out.print("La Habitaciï¿½n no existe");
             }
         } catch (Exception e) {
             System.out.print("ERROR: " + e.getMessage());
@@ -146,7 +146,7 @@ public class MainApp {
         try {
             Habitacion habitacion = Consola.leerHabitacion();
             habitaciones.borrar(habitacion);
-            System.out.print("La Habitación ha sido borrada");
+            System.out.print("La Habitaciï¿½n ha sido borrada");
         } catch (Exception e) {
             System.out.print("ERROR: " + e.getMessage());
             Entrada.cadena();
@@ -180,7 +180,7 @@ public class MainApp {
                 reservas.insertar(reserva);
                 System.out.print("La reserva ha sido registrada");
             } else {
-                System.out.print("No es posible registrar esta reserva porque ya existe otr reserva para la misma fecha y habitación seleccionada");
+                System.out.print("No es posible registrar esta reserva porque ya existe otr reserva para la misma fecha y habitaciï¿½n seleccionada");
             }
         } catch (Exception e) {
             System.out.print("ERROR: " + e.getMessage());
@@ -215,7 +215,7 @@ public class MainApp {
     private static void listarReservas(TipoHabitacion tipoHabitacion) {
         try {
             if (reservas.getTamano() > 0) {
-                System.out.println("Estas son las reservas para este tipo de habitación: ");
+                System.out.println("Estas son las reservas para este tipo de habitaciï¿½n: ");
                 System.out.println(" ");
                 Reserva[] reservasTipo = reservas.getReservas(tipoHabitacion);
                 if (reservasTipo.length > 0) {
@@ -224,7 +224,7 @@ public class MainApp {
                         System.out.println(" ");
                     }
                 } else {
-                    System.out.println("No existen reservas para este tipo de habitación");
+                    System.out.println("No existen reservas para este tipo de habitaciï¿½n");
                 }
 
             } else {
@@ -271,7 +271,7 @@ public class MainApp {
                         } else {
                             //Solo Existe una reserva anulable para este huesped
                             System.out.println(reservasAnulables[0].toString());
-                            System.out.println("Está seguro de que desea anular esta reserva (S/N): ");
+                            System.out.println("Estï¿½ seguro de que desea anular esta reserva (S/N): ");
                             char respuesta = Entrada.caracter();
                             if (Character.toString(respuesta).equalsIgnoreCase("s"))
                                 reservas.borrar(reservasAnulables[0]);
