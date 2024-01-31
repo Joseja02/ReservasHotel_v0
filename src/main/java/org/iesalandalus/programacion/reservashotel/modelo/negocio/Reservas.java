@@ -26,6 +26,7 @@ public class Reservas {
     public Reserva[] get() {
         return copiaProfundaReservaes();
     }
+
     private Reserva[] copiaProfundaReservaes() {
 
         Reserva[] copiaReservaes = new Reserva[getCapacidad()];
@@ -56,7 +57,7 @@ public class Reservas {
 
         tamano = getTamano();
 
-        if(buscar(reserva)!=null){
+        if (buscar(reserva) != null) {
             throw new OperationNotSupportedException("ERROR: Ya existe una reserva igual.");
         }
         if (capacidadSuperada(getTamano() + 1)) {
@@ -65,9 +66,9 @@ public class Reservas {
 
         Reserva[] nuevoArray = new Reserva[tamano + 1];
 
-        if (capacidad >= 0){
-            for(int i=0; i < getTamano(); i++){
-                nuevoArray[i]= new Reserva(get()[i]);
+        if (capacidad >= 0) {
+            for (int i = 0; i < getTamano(); i++) {
+                nuevoArray[i] = new Reserva(get()[i]);
             }
         }
         nuevoArray[nuevoArray.length - 1] = new Reserva(reserva);
@@ -82,8 +83,7 @@ public class Reservas {
             Reserva res = new Reserva(get()[i]);
             if (res.getHuesped().getDni().equals(reserva.getHuesped().getDni()) &&
                     res.getHabitacion().equals(reserva.getHabitacion()) &&
-                    res.getFechaInicioReserva().equals(reserva.getFechaInicioReserva()))
-            {
+                    res.getFechaInicioReserva().equals(reserva.getFechaInicioReserva())) {
                 return i;
             }
         }
@@ -136,16 +136,15 @@ public class Reservas {
         tamano = getTamano();
     }
 
-    public Reserva[] getReservas(Huesped huesped)  {
-        if(huesped == null)
-        {
+    public Reserva[] getReservas(Huesped huesped) {
+        if (huesped == null) {
             throw new NullPointerException("ERROR: No se pueden buscar reservas de un huesped nulo.");
         }
-        Reserva[] reservasHuesped= new Reserva[capacidad];
+        Reserva[] reservasHuesped = new Reserva[capacidad];
         int posReservasHuesped = 0;
-        for(int i=0; i< get().length; i++){
+        for (int i = 0; i < get().length; i++) {
             Reserva reserva = get()[i];
-            if(reserva.getHuesped().getDni().equals(huesped.getDni())){
+            if (reserva.getHuesped().getDni().equals(huesped.getDni())) {
                 reservasHuesped[posReservasHuesped] = new Reserva(reserva);
                 posReservasHuesped++;
             }
@@ -154,14 +153,14 @@ public class Reservas {
     }
 
     public Reserva[] getReservas(TipoHabitacion tipoHabitacion) {
-        if(tipoHabitacion==null){
+        if (tipoHabitacion == null) {
             throw new NullPointerException("ERROR: No se pueden buscar reservas de un tipo de habitación nula.");
         }
-        Reserva[] reservasHuesped= new Reserva[capacidad];
+        Reserva[] reservasHuesped = new Reserva[capacidad];
         int posReservasTipo = 0;
-        for(int i=0; i< reservas.length; i++){
+        for (int i = 0; i < reservas.length; i++) {
             Reserva reserva = get()[i];
-            if(reserva.getHabitacion().getTipoHabitacion().equals(tipoHabitacion)){
+            if (reserva.getHabitacion().getTipoHabitacion().equals(tipoHabitacion)) {
                 reservasHuesped[posReservasTipo] = new Reserva(reserva);
                 posReservasTipo++;
             }
@@ -169,28 +168,28 @@ public class Reservas {
         return reservasHuesped;
     }
 
-    public Reserva[] getReservasFuturas(Habitacion habitacion){
-        if(habitacion==null)
+    public Reserva[] getReservasFuturas(Habitacion habitacion) {
+        if (habitacion == null)
             throw new NullPointerException("ERROR: No se pueden buscar reservas de una habitación nula.");
 
-        Reserva[] reservasHuesped= new Reserva[capacidad];
+        Reserva[] reservasHuesped = new Reserva[capacidad];
         int posReservasHabitacion = 0;
-        for(int i=0; i< reservas.length; i++){
+        for (int i = 0; i < reservas.length; i++) {
             Reserva reserva = get()[i];
-            if(reserva.getHabitacion().getIdentificador().equals(habitacion.getIdentificador()) &&
-                    reserva.getFechaInicioReserva().isAfter(LocalDate.now()))
-            {
+            if (reserva.getHabitacion().getIdentificador().equals(habitacion.getIdentificador()) &&
+                    reserva.getFechaInicioReserva().isAfter(LocalDate.now())) {
                 reservasHuesped[posReservasHabitacion] = new Reserva(reserva);
                 posReservasHabitacion++;
             }
         }
         return reservasHuesped;
     }
-    public void realizarCheckin (Reserva reserva, LocalDateTime fecha){
+
+    public void realizarCheckin(Reserva reserva, LocalDateTime fecha) {
         reserva.setCheckIn(fecha);
     }
-    public void realizarCheckout (Reserva reserva, LocalDateTime fecha){
+
+    public void realizarCheckout(Reserva reserva, LocalDateTime fecha) {
         reserva.setCheckOut(fecha);
     }
-
 }

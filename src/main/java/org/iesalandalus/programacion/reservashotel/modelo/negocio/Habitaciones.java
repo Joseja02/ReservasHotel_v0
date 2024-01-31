@@ -26,9 +26,9 @@ public class Habitaciones {
     public Habitacion[] get(TipoHabitacion tipoHabitacion) {
         Habitacion[] copia = copiaProfundaHabitaciones();
         Habitacion[] habitacionesTipo = new Habitacion[capacidad];
-        for(int i=0; i<getTamano();i++){
+        for (int i = 0; i < getTamano(); i++) {
             Habitacion habitacion = copia[i];
-            if(habitacion.getTipoHabitacion().equals(tipoHabitacion)){
+            if (habitacion.getTipoHabitacion().equals(tipoHabitacion)) {
                 habitacionesTipo[i] = habitacion;
             }
         }
@@ -65,7 +65,7 @@ public class Habitaciones {
 
         tamano = getTamano();
 
-        if(buscar(habitacion)!=null){
+        if (buscar(habitacion) != null) {
             throw new OperationNotSupportedException("ERROR: Ya existe una habitación con ese identificador.");
         }
         if (capacidadSuperada(getTamano() + 1)) {
@@ -74,9 +74,9 @@ public class Habitaciones {
 
         Habitacion[] nuevoArray = new Habitacion[tamano + 1];
 
-        if (capacidad >= 0){
-            for(int i=0; i<getTamano(); i++){
-                nuevoArray[i]= new Habitacion(get()[i]);
+        if (capacidad >= 0) {
+            for (int i = 0; i < getTamano(); i++) {
+                nuevoArray[i] = new Habitacion(get()[i]);
             }
         }
         nuevoArray[nuevoArray.length - 1] = new Habitacion(habitacion);

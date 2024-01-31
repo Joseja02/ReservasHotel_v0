@@ -17,57 +17,88 @@ public class Modelo {
     private Habitaciones habitaciones;
     private Reservas reservas;
 
-    public void comenzar(){
+    public void comenzar() {
         huespedes = new Huespedes(CAPACIDAD);
         habitaciones = new Habitaciones(CAPACIDAD);
         reservas = new Reservas(CAPACIDAD);
     }
-    public void terminar(){
+
+    public void terminar() {
         System.out.println("El modelo ha finalizado.");
     }
-    public void insertar (Huesped huesped) throws OperationNotSupportedException {
+
+    // Huesped
+    public void insertar(Huesped huesped) throws OperationNotSupportedException {
         huespedes.insertar(huesped);
     }
-    public Huesped buscar (Huesped huesped){
-        huespedes.buscar(huesped);
-        return new Huesped(huesped);
+
+    public Huesped buscar(Huesped huesped) {
+        return huespedes.buscar(huesped);
     }
-    public void borrar (Huesped huesped) throws OperationNotSupportedException {
+
+    public void borrar(Huesped huesped) throws OperationNotSupportedException {
         huespedes.borrar(huesped);
     }
-    public Huesped[] getHuespedes(){
-        return new Huesped[CAPACIDAD];
+
+    public Huesped[] getHuespedes() {
+        return huespedes.get();
     }
-    public void insertar (Habitacion habitacion) throws OperationNotSupportedException {
+
+    // Habitación
+    public void insertar(Habitacion habitacion) throws OperationNotSupportedException {
         habitaciones.insertar(habitacion);
     }
-    public Habitacion buscar (Habitacion habitacion){
-        habitaciones.buscar(habitacion);
-        return new Habitacion(habitacion);
+
+    public Habitacion buscar(Habitacion habitacion) {
+        return habitaciones.buscar(habitacion);
     }
-    public void borrar (Habitacion habitacion) throws OperationNotSupportedException {
+
+    public void borrar(Habitacion habitacion) throws OperationNotSupportedException {
         habitaciones.borrar(habitacion);
     }
-    public Habitacion[] getHabitaciones(){ return new Habitacion[CAPACIDAD]; }
-    public Habitacion[] getHabitaciones(TipoHabitacion tipoHabitacion){ return new Habitacion[CAPACIDAD]; }
-    public void insertar (Reserva reserva) throws OperationNotSupportedException {
+
+    public Habitacion[] getHabitaciones() {
+        return habitaciones.get();
+    }
+
+    public Habitacion[] getHabitaciones(TipoHabitacion tipoHabitacion) {
+        return habitaciones.get(tipoHabitacion);
+    }
+
+    // Reserva
+    public void insertar(Reserva reserva) throws OperationNotSupportedException {
         reservas.insertar(reserva);
     }
-    public Reserva buscar (Reserva reserva){
-        reservas.buscar(reserva);
-        return new Reserva(reserva);
+
+    public Reserva buscar(Reserva reserva) {
+        return reservas.buscar(reserva);
     }
-    public void borrar (Reserva reserva) throws OperationNotSupportedException {
+
+    public void borrar(Reserva reserva) throws OperationNotSupportedException {
         reservas.borrar(reserva);
     }
-    public Reserva[] getReservas(){ return new Reserva[CAPACIDAD]; }
-    public Reserva[] getReservas(Huesped huesped){ return new Reserva[CAPACIDAD]; }
-    public Reserva[] getReservas(TipoHabitacion tipoHabitacion){ return new Reserva[CAPACIDAD]; }
-    public Reserva[] getReservasFuturas(Habitacion habitacion){ return new Reserva[CAPACIDAD]; }
-    public void realizarCheckin(Reserva reserva, LocalDateTime fecha){
+
+    public Reserva[] getReservas() {
+        return reservas.get();
+    }
+
+    public Reserva[] getReservas(Huesped huesped) {
+        return reservas.getReservas(huesped);
+    }
+
+    public Reserva[] getReservas(TipoHabitacion tipoHabitacion) {
+        return reservas.getReservas(tipoHabitacion);
+    }
+
+    public Reserva[] getReservasFuturas(Habitacion habitacion) {
+        return reservas.getReservasFuturas(habitacion);
+    }
+
+    public void realizarCheckin(Reserva reserva, LocalDateTime fecha) {
         reservas.realizarCheckin(reserva, fecha);
     }
-    public void realizarCheckout(Reserva reserva, LocalDateTime fecha){
+
+    public void realizarCheckout(Reserva reserva, LocalDateTime fecha) {
         reservas.realizarCheckout(reserva, fecha);
     }
 }

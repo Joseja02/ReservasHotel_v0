@@ -72,7 +72,7 @@ public final class Consola {
     public static LocalDate leerFecha(String mensaje) {
         try {
             System.out.print(mensaje);
-            return LocalDate.parse(Entrada.cadena(),DateTimeFormatter.ofPattern(FORMATO_FECHA_RESERVA));
+            return LocalDate.parse(Entrada.cadena(), DateTimeFormatter.ofPattern(FORMATO_FECHA_RESERVA));
         } catch (Exception e) {
             System.out.println("El formato de fecha introducido no es válido.");
             return leerFecha(mensaje);
@@ -113,7 +113,7 @@ public final class Consola {
         return habitacion;
     }
 
-    public static TipoHabitacion leerTipoHabitacion(){
+    public static TipoHabitacion leerTipoHabitacion() {
         for (TipoHabitacion opcion : TipoHabitacion.values()) {
             System.out.println(opcion.ordinal() + "  -  " + opcion.toString());
         }
@@ -121,7 +121,7 @@ public final class Consola {
         return TipoHabitacion.values()[Entrada.entero()];
     }
 
-    public static Regimen leerRegimen(){
+    public static Regimen leerRegimen() {
         for (Regimen opcion : Regimen.values()) {
             System.out.println(opcion.ordinal() + "  -  " + opcion.toString());
         }
@@ -138,9 +138,9 @@ public final class Consola {
         LocalDate fechaFinReserva;
         int numeroPersonas;
 
-        System.out.print("Introduzca la fecha inicio de reserva("+FORMATO_FECHA_RESERVA+"): ");
+        System.out.print("Introduzca la fecha inicio de reserva(" + FORMATO_FECHA_RESERVA + "): ");
         fechaInicioReserva = LocalDate.parse(Entrada.cadena(), DateTimeFormatter.ofPattern(FORMATO_FECHA_RESERVA));
-        System.out.print("Introduzca la fecha fin de reserva("+FORMATO_FECHA_RESERVA+"): ");
+        System.out.print("Introduzca la fecha fin de reserva(" + FORMATO_FECHA_RESERVA + "): ");
         fechaFinReserva = LocalDate.parse(Entrada.cadena(), DateTimeFormatter.ofPattern(FORMATO_FECHA_RESERVA));
         System.out.print("Introduzca número de personas: ");
         numeroPersonas = Entrada.entero();
