@@ -140,6 +140,7 @@ public class Reservas {
         if (huesped == null) {
             throw new NullPointerException("ERROR: No se pueden buscar reservas de un huesped nulo.");
         }
+
         Reserva[] reservasHuesped = new Reserva[capacidad];
         int posReservasHuesped = 0;
         for (int i = 0; i < get().length; i++) {

@@ -12,7 +12,7 @@ import javax.naming.OperationNotSupportedException;
 import java.time.LocalDateTime;
 
 public class Modelo {
-    private int CAPACIDAD;
+    private int CAPACIDAD = 1;
     private Huespedes huespedes;
     private Habitaciones habitaciones;
     private Reservas reservas;
